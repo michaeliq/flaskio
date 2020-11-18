@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO, send, emit
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clavesecreta'
@@ -12,8 +12,8 @@ def index():
 @socketio.on('message')
 def handleMessage(msg):
     print("Message: " + msg)
-    send(msg, brodcast = True)
+    send(msg, broadcast = True)
 
 
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)

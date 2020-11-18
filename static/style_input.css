@@ -1,0 +1,67 @@
+.form__group {
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+    width: 1000px;
+    display: flex;
+  }
+
+  .container__input{
+      position: relative;
+      min-width: 50%;
+      background-color: rgba(144,135,140,0.3);
+      height: 100%;
+      padding-left:15px;
+      padding-bottom: 15px;
+      border-radius: 20px 0 0 20px;
+  }
+
+  .container__list{
+      position: relative;
+      min-width: 50%;
+      background-color: rgba(255,255,255);
+      height:100%;
+  }
+
+  .container__list ul li{
+      list-style: none;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 500px;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  .form__field::placeholder {
+    color: white;
+  }
+
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+  }
+  
+  #send{
+      background-color: linear-gradient(to right, #11998e, #38ef7d);
+      width: 40px;
+      height: 30px;
+  }
+
+  /* demo */
+  body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    width: 100vw;
+    font-size: 1.5rem;
+    background-color: #222222;
+  }
