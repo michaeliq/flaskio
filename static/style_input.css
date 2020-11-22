@@ -40,7 +40,7 @@
     transition: border-color 0.2s;
   }
   .form__field::placeholder {
-    color: white;
+    color: #fff8;
   }
 
   .form__field:focus {
@@ -52,8 +52,8 @@
   }
   
   #send{
-      background-color: linear-gradient(to right, #11998e, #38ef7d);
-      width: 40px;
+      background-color:#38ef7d;
+      width: 80px;
       height: 30px;
   }
 
