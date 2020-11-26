@@ -28,6 +28,10 @@ def join_personal_room(data):
     msg = data['msg']
     send(msg, room = room)
 
+@socketio.on_error()
+def error_handler(e):
+    app.logger.info(e)
+
 @socketio.on('message')
 def handle_message(msg):
     send(msg, broadcast = True)

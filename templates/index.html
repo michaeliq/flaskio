@@ -36,27 +36,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" charset="utf-8"></script>
-	<script>
-		const socket = io();	
-		const nombreUsuario = window.prompt('Cual es tu nombre?', 'invitado');
-		
-		document.getElementById('nombreUsuario').innerHTML = nombreUsuario;
-
-		$('#send').on('click', function(){
-			socket.send({
-				'name':nombreUsuario,
-				'msg':$('#myMessage').val()});
-			$('#myMessage').val('')
-		});
-
-		socket.on('message', function(data){
-			$('#messages').append('<li>' + data['name'] + ": "  + data['msg'] + '</li>');
-			$('#content_info').removeClass('d-none');
-			$('#info').text(data['name']);
-		});
-
-		
-
-	</script>
+	
+	<script src="static/script_socket.js"></script>
 </body>
 </html>
