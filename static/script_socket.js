@@ -11,7 +11,7 @@ $('#send').on('click', function(){
 });
 
 socket.on('message', (data) => {
-        $('#messages').append('<li>' + data['name'] + ": " + data['msg'] + '</li>');
+        $('#mensajes').append('<li>' + data['name'] + ": " + data['msg'] + '</li>');
         $('#content_info').removeClass('d-none');
         $('#info').text(data['name']);
     });

@@ -1,8 +1,40 @@
-<div id="" class="">
-	<div class="">
-		<input type="text">
-	</div>
-	<div class="">
-		<button></button>
-	</div>
+
+<script src="https://kit.fontawesome.com/5b170b8c6d.js" crossorigin="anonymous"></script>
+
+<div class="contenedor">
+  <!--navegacion-->
+  <div class="contenedor__nav">
+    <nav class="nav">
+      <div class="nav__usuario">
+        <div class="usuario__imagen">
+          <img src="https://i.pinimg.com/736x/88/f9/54/88f954c97ed33cf50046303b97c20ea4.jpg" alt="selfie">
+        </div>
+        <div class="usuario__identidad">
+          <p id="nombreUsuario"></p>
+        </div>
+      </div>
+      <ul class="nav__opciones">
+        
+      </ul>
+    </nav>
+  </div>
+  <!--zona de mensajes-->
+  <div class="contenedor__mensajes">
+    <div class="mensajes__fondo">
+      <div class="mensajes__lista">
+        <ul id="mensajes">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--chat de socketio -->
+  <div class="contenedor__input" id="contenedor__input">
+    <div class="input__chat">
+      <input type="text" class="chat" id="myMessage">
+    </div>
+    <div class="input__button">
+      <button id="send"><i class="far fa-paper-plane"></i></button>
+    </div>
+  </div>
 </div>
