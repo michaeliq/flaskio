@@ -1,11 +1,15 @@
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send
 import eventlet
+eventlet.monkey_patch()
+
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, send, emit
+import redis
 
 app = Flask(__name__)
-app.debug = True
 app.config['SECRET_KEY'] = 'clavesecreta'
-socketio = SocketIO(app, async_mode='eventlet')
+
+
+socketio = SocketIO(app, async_mode='eventlet', message_queue = "redis://", logger=True)
 
 @app.route('/')
 def index():
@@ -14,6 +18,7 @@ def index():
 @socketio.on('connect')
 def client_connected():
     id_cli = str(request.sid)
+    socketio.emit('connect', id_cli)
     print('client is connected ')
 
 @socketio.on('disconnect')
@@ -34,8 +39,9 @@ def error_handler(e):
 
 @socketio.on('message')
 def handle_message(msg):
-    send(msg, broadcast = True)
+    msg['sid'] = request.sid
+    socketio.emit('message', msg, namespace='/')
 
 
 if __name__ == "__main__":
-    socketio.run(app)
+    socketio.run(app, debug=True)
