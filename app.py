@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
-import eventlet
+from flask_sqlalchemy import SQLAlchemy
+import datetime
+import config
 
 app = Flask(__name__)
+app.config.from_object(config)
 app.debug = True
 app.config['SECRET_KEY'] = 'clavesecreta'
-socketio = SocketIO(app, async_mode='eventlet')
+socketio = SocketIO(app, async_mode="gevent")
+db = SQLAlchemy(app)
+
+from models import Room
 
 @app.route('/')
 def index():
@@ -21,12 +27,17 @@ def client_disconnected():
     id_cli = request.sid
     print('client is disconnected ' + str(id_cli))
 
-@socketio.on('join_personal_room')
-def join_personal_room(data):
-    id_cli = request.sid
-    room = id_cli
-    msg = data['msg']
-    send(msg, room = room)
+#@socketio.on('create_room')
+def create_room(data):
+    newRoom = Room(name=data['name'+" room"],created_at=datetime.datetime.now(),created_by=data['name'])
+    db.session.add(newRoom)
+    db.session.commit()
+
+def view_room(room_id):
+    pass
+
+def edit_room(room_id,room_name,members):
+    pass
 
 @socketio.on_error()
 def error_handler(e):
@@ -35,6 +46,8 @@ def error_handler(e):
 @socketio.on('message')
 def handle_message(msg):
     send(msg, broadcast = True)
+
+
 
 
 if __name__ == "__main__":
