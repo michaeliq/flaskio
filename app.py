@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO, send, emit
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import config
@@ -16,21 +15,7 @@ migrate = Migrate(app, db)
 
 from models import Room, RoomMember, User
 
-=======
-import eventlet
-eventlet.monkey_patch()
-
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, send, emit, join_room, leave_room
-import redis
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'clavesecreta'
-
-
-socketio = SocketIO(app, async_mode='eventlet', message_queue = "redis://", logger=False)
 clients = {'quality':0,'id_users':[]}
->>>>>>> 2b1c292575a78f72ddf02a0f9e1ffb731aeb3c2d
 
 @app.route('/')
 def index():
@@ -57,23 +42,12 @@ def client_disconnected():
     clients['id_users'].remove(id_cli)
     print('client is disconnected ' + str(id_cli))
 
-<<<<<<< HEAD
-#@socketio.on('create_room')
-def create_room(data):
-    pass
-
-def view_room(room_id):
-    pass
-
-def edit_room(room_id,room_name,members):
-=======
 @socketio.on('join')
 def join_room_():
     #name = request.args.get()
     #room = data['room']
     #join_room(room)
     #socketio.send(name + ' has entered the room. ', room=room)
->>>>>>> 2b1c292575a78f72ddf02a0f9e1ffb731aeb3c2d
     pass
 
 @socketio.on_error()
