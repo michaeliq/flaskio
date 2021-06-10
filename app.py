@@ -1,17 +1,20 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 from flask_sqlalchemy import SQLAlchemy
-import datetime
+from flask_migrate import Migrate
 import config
 
 app = Flask(__name__)
 app.config.from_object(config)
 app.debug = True
-app.config['SECRET_KEY'] = 'clavesecreta'
+app.config['SQLALCHEMY_DATABSE_URI'] = 'sqlite:///message_app.db'
 socketio = SocketIO(app, async_mode="gevent")
 db = SQLAlchemy(app)
 
-from models import Room
+migrate = Migrate(app, db)
+
+from models import Room, RoomMember, User
+
 
 @app.route('/')
 def index():
@@ -29,9 +32,7 @@ def client_disconnected():
 
 #@socketio.on('create_room')
 def create_room(data):
-    newRoom = Room(name=data['name'+" room"],created_at=datetime.datetime.now(),created_by=data['name'])
-    db.session.add(newRoom)
-    db.session.commit()
+    pass
 
 def view_room(room_id):
     pass
