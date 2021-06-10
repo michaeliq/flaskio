@@ -3,3 +3,4 @@ env/
 migrations/
 *.pyc
 config.py
+test.py
